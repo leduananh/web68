@@ -1,0 +1,47 @@
+[
+    {
+      "_id": "64423991a29a129cdb4a1d19",
+      "index": 0,
+      "guid": "23266c20-2b55-4a2e-ba7f-f44ce2f7dff4",
+      "isActive": true,
+      "balance": "$2,041.75",
+      "picture": "http://placehold.it/32x32",
+      "age": 21,
+      "eyeColor": "green",
+      "name": "Webb Roth",
+      "gender": "male",
+      "company": "AUSTECH",
+      "email": "webbroth@austech.com",
+      "phone": "+1 (818) 580-2127",
+      "address": "603 Croton Loop, Malo, Connecticut, 5719",
+      "about": "Enim proident ex amet eu non eiusmod commodo sit voluptate exercitation dolor ullamco et ea. Velit enim eu occaecat dolor ipsum incididunt et cupidatat esse adipisicing. Enim duis in amet sunt commodo ut nisi ad fugiat.\r\n",
+      "registered": "2016-12-20T07:36:29 -07:00",
+      "latitude": 18.067718,
+      "longitude": 41.708965,
+      "tags": [
+        "adipisicing",
+        "do",
+        "nisi",
+        "ad",
+        "sunt",
+        "eu",
+        "culpa"
+      ],
+      "friends": [
+        {
+          "id": 0,
+          "name": "Juarez Marshall"
+        },
+        {
+          "id": 1,
+          "name": "Aimee Higgins"
+        },
+        {
+          "id": 2,
+          "name": "Johanna Nolan"
+        }
+      ],
+      "greeting": "Hello, Webb Roth! You have 4 unread messages.",
+      "favoriteFruit": "apple"
+    }
+  ]
