@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Login form</title>
+</head>
+
+<body>
+  <h1>Login form</h1>
+  </br>
+  <% if (user) { %>
+  <h1>
+    bạn đã login với tài khoản: <%= user.username%>
+  </h1>
+  <% }%>
+
+  <% if (form) { %>
+  <form method="<%=form.method%>" action="<%=form.action%>">
+    <% form.fields.forEach((field,index)=> { %>
+
+    <label for="<%=field.labelKey%>">
+      <%=field.labelName%>
+    </label>
+
+    <input type="<%=field.fieldType%>" name="<%=field.labelKey%>" id="<%=field.labelKey%>">
+
+    <% if(form.fields.length !==index + 1) { %>
+    <br>
+    <% } %>
+    <% }) %>
+    <br>
+    <button type="submit">Submit</button>
+  </form>
+  <% } %>
+
+</body>
+
+</html>
