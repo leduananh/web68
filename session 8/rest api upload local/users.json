@@ -1,0 +1,35 @@
+[
+  {
+    "_id": {
+      "$oid": "6452bf9f8cccc1798dd653ae"
+    },
+    "email": "admin@mail.com",
+    "name": "admin",
+    "password": "123",
+    "roles": [
+      "ADMIN"
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "6452bf9f8cccc1798dd653af"
+    },
+    "email": "user1@mail.com",
+    "name": "user1",
+    "password": "123",
+    "roles": [
+      "USER"
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "6452bf9f8cccc1798dd653b0"
+    },
+    "email": "user2@mail.com",
+    "name": "user2",
+    "password": "123",
+    "roles": [
+      "USER"
+    ]
+  }
+]
