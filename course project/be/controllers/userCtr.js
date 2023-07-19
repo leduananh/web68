@@ -14,6 +14,7 @@ const apiError = require("../utils/apiError");
 const storage = require("../config/cloudinary");
 const multer = require("multer");
 const { selectFields } = require("express-validator/src/select-fields");
+const NotificationService = require("../service/NotificationService");
 const upload = multer({ storage: storage });
 
 exports.uploadProfileImage = upload.single("profile");
@@ -170,7 +171,7 @@ exports.following = asyncHandler(async (req, res, next) => {
       });
     }
   } else {
-    return next(new apiError("User that you trying to follow not found!", 403));
+    return next(new apiError("User that you trying to follow not found!",   ));
   }
 });
 
@@ -192,25 +193,7 @@ exports.unFollowing = asyncHandler(async (req, res, next) => {
       return next(new apiError("You have not followed this user"));
     } else {
       //   remove userToFollow to the userWhoFollowed's following array
-      await User.findByIdAndUpdate(
-        req.user._id,
-        {
-          $pull: { following: B._id },
-        },
-        { new: true }
-      );
-      // remove userWhoFollowed into the user's followers array
-      await User.findByIdAndUpdate(
-        req.params.id,
-        {
-          $pull: { followers: A._id },
-        },
-        { new: true }
-      );
-      res.json({
-        status: "success",
-        data: "You have successfully unfollow this user",
-      });
+     
     }
   } else {
     return next(
@@ -311,4 +294,12 @@ exports.unblockUser_admin = asyncHandler(async (req, res, next) => {
   res
     .status(200)
     .json({ message: "You Successfully unblock this user", data: user });
+});
+
+exports.loadNotificationForUser = asyncHandler(async (req, res) => {
+  const notificationList = await NotificationService.loadNotificationForUser(req.user._id);
+
+  res.status(200).json({
+      data: notificationList
+  })
 });

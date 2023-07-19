@@ -87,3 +87,14 @@ exports.getPostValidator = [
 
   validatorResult,
 ];
+
+exports.likeAndUnLikePostValidator = [
+  body("id").custom((value, { req }) => {
+    if (!isValidObjectId(req.params.id)) {
+      throw new Error(`Invalid Post id format`);
+    }
+    return true;
+  }),
+
+  validatorResult,
+];

@@ -7,6 +7,8 @@ const {
   allPosts,
   getPost,
   deletePost,
+  likePost,
+  unLikePost,
 } = require("../controllers/postCtr");
 
 const {
@@ -20,6 +22,7 @@ const {
   removePostValidator,
   updatePostValidator,
   getPostValidator,
+  likeAndUnLikePostValidator,
 } = require("../utils/validators/postValidator");
 
 // @desc Create Post
@@ -65,6 +68,22 @@ router.delete(
   alowedTo("admin", "user"),
   removePostValidator,
   deletePost
+);
+
+router.patch(
+  "/like/:id",
+  requireSignIn,
+  alowedTo("admin", "user"),
+  likeAndUnLikePostValidator,
+  likePost
+);
+
+router.patch(
+  "/unLike/:id",
+  requireSignIn,
+  alowedTo("admin", "user"),
+  likeAndUnLikePostValidator,
+  unLikePost
 );
 
 module.exports = router;

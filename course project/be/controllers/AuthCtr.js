@@ -16,9 +16,12 @@ exports.signup = asyncHandler(async (req, res) => {
     password,
   });
 
-  if (user) {
-    res.status(201).json({ token: createToken(user._id), data: user });
+  if (!user) {
+    throw new apiError("SOMETHING WRONG",500)
   }
+  
+  res.status(201).json({ token: createToken(user._id), data: user });
+
 });
 
 // @desc Login

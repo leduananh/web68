@@ -66,9 +66,8 @@ const PostSchema = new mongoose.Schema(
       },
     ],
   },
-  {
-    timestamps: true,
-  }
+  // { toJSON: { virtuals: true } },
+  { timestamps: true }
 );
 
 // Create Model

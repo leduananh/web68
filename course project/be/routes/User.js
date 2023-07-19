@@ -18,6 +18,7 @@ const {
   unblockUser_admin,
   changeUserPassword,
   deleteAccount,
+  loadNotificationForUser,
 } = require("./../controllers/userCtr");
 
 const {
@@ -32,6 +33,16 @@ const {
 } = require("../utils/validators/userValidator");
 
 const { requireSignIn, alowedTo } = require("../middlwares/authMiddlwares");
+
+
+// @desc get notification for user id
+// @access Admin, User
+router.get(
+  "/notifications",
+  requireSignIn,
+  alowedTo("user", "admin"),
+  loadNotificationForUser
+);
 
 // @Desc Create a User
 // @access Private/Admin

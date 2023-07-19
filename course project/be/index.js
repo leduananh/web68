@@ -1,7 +1,6 @@
 const express = require("express");
 const app = express();
 
-//
 const apiError = require("./utils/apiError");
 const { globalErrHandler } = require("./utils/globalErrHandler");
 
@@ -38,9 +37,8 @@ app.all("*", (req, res, next) => {
 
 // Global Error Handlers Middleware
 app.use(globalErrHandler);
-
 // Listen To Server
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => {
   console.log(`server is running on ${PORT}`);
 });
