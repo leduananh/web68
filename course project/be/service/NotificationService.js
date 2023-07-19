@@ -14,9 +14,31 @@ NotificationService.createNotification = async (title, content, type, receivedUs
     await Notification.insertMany(notificationList);
 }
 
-NotificationService.loadNotificationForUser = async (receivedUserId) => {
+NotificationService.loadNotificationForUser = async (receivedUserId, dateFilter = 7, isRead = false) => {
+    const currentDate = new Date()
+    const filterDate = currentDate.setDate(currentDate.getDate() - dateFilter);
+
     return await Notification.find(
-        { receivedUserId }
+        {
+            receivedUserId,
+            createdAt: { $gte: filterDate },
+            isRead
+        }
+    ).sort({ createdAt: -1 });
+}
+
+NotificationService.readNotificationById = async (notificationId) => {
+
+    return await Notification.findOneAndUpdate(
+        {
+            _id: notificationId
+        },
+        {
+            $set: { isRead: true }
+        },
+        {
+            new: true
+        }
     );
 }
 

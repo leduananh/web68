@@ -297,9 +297,21 @@ exports.unblockUser_admin = asyncHandler(async (req, res, next) => {
 });
 
 exports.loadNotificationForUser = asyncHandler(async (req, res) => {
-  const notificationList = await NotificationService.loadNotificationForUser(req.user._id);
+  const {dateFilter, isRead} = req.query
+  const notificationList = await NotificationService.loadNotificationForUser(req.user._id, dateFilter || 7, isRead || false);
 
   res.status(200).json({
       data: notificationList
+  })
+});
+
+
+exports.readNotification = asyncHandler(async (req, res) => {
+  const {id} = req.params
+  
+  const notification = await NotificationService.readNotificationById(id);
+
+  res.status(200).json({
+      data: notification
   })
 });

@@ -19,6 +19,7 @@ const {
   changeUserPassword,
   deleteAccount,
   loadNotificationForUser,
+  readNotification,
 } = require("./../controllers/userCtr");
 
 const {
@@ -42,6 +43,15 @@ router.get(
   requireSignIn,
   alowedTo("user", "admin"),
   loadNotificationForUser
+);
+
+// @desc admin unblock users
+// @access Admin
+router.patch(
+  "/notifications/:id/read",
+  requireSignIn,
+  alowedTo("user", "admin"),
+  readNotification
 );
 
 // @Desc Create a User
