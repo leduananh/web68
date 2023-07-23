@@ -13,12 +13,17 @@ require("./config/database");
 // middleware
 app.use(express.json()); // pass income payload
 
+// cors
+var cors = require('cors')
+
 // routes
 const userRouters = require("./routes/User");
 const authRouters = require("./routes/Auth");
 const categoryRouters = require("./routes/Category");
 const postRouters = require("./routes/Post");
 const commentRouters = require("./routes/Comment");
+
+app.use(cors())
 
 // routes middlware
 app.use("/api/users", userRouters);
@@ -37,6 +42,7 @@ app.all("*", (req, res, next) => {
 
 // Global Error Handlers Middleware
 app.use(globalErrHandler);
+
 // Listen To Server
 const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => {

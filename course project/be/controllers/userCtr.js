@@ -171,7 +171,7 @@ exports.following = asyncHandler(async (req, res, next) => {
       });
     }
   } else {
-    return next(new apiError("User that you trying to follow not found!",   ));
+    return next(new apiError("User that you trying to follow not found!",));
   }
 });
 
@@ -193,7 +193,7 @@ exports.unFollowing = asyncHandler(async (req, res, next) => {
       return next(new apiError("You have not followed this user"));
     } else {
       //   remove userToFollow to the userWhoFollowed's following array
-     
+
     }
   } else {
     return next(
@@ -297,21 +297,21 @@ exports.unblockUser_admin = asyncHandler(async (req, res, next) => {
 });
 
 exports.loadNotificationForUser = asyncHandler(async (req, res) => {
-  const {dateFilter, isRead} = req.query
+  const { dateFilter, isRead } = req.query
   const notificationList = await NotificationService.loadNotificationForUser(req.user._id, dateFilter || 7, isRead || false);
 
   res.status(200).json({
-      data: notificationList
+    data: notificationList
   })
 });
 
 
 exports.readNotification = asyncHandler(async (req, res) => {
-  const {id} = req.params
-  
+  const { id } = req.params
+
   const notification = await NotificationService.readNotificationById(id);
 
   res.status(200).json({
-      data: notification
+    data: notification
   })
 });

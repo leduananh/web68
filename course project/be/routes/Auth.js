@@ -11,6 +11,6 @@ const {
 router.post("/signup", signupValidator, signup);
 
 // @desc Login
-router.get("/login", loginValidator, login);
+router.post("/login", loginValidator, login);
 
 module.exports = router;
