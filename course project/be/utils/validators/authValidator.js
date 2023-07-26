@@ -1,4 +1,4 @@
-const { body, validationResult } = require("express-validator");
+const { body, validationResult, header } = require("express-validator");
 const User = require("../../model/User");
 const validatorResult = require("../../middlwares/validatorMiddlwares");
 const bcrypt = require("bcrypt");
@@ -60,3 +60,8 @@ exports.loginValidator = [
     .withMessage("password is not allowed to be empty"),
   validatorResult,
 ];
+
+
+// exports.loginValidator = [
+//   header("")
+// ];

@@ -33,15 +33,16 @@ exports.login = asyncHandler(async (req, res, next) => {
   if (!user || !(await bcrypt.compare(req.body.password, user.password))) {
     return next(new apiError("Invalid Password or Email", 401));
   }
+
   if (user.isBlocked) {
     return next(new apiError("Your Account has been disabled", 403));
   }
+
   //  Create Token
   const token = createToken(user._id);
 
   //  Delete password from response
   delete user._doc.password;
-
   //  Send response to client side
-  res.status(200).json({ token, data: user });
+  res.status(200).json({ token, user: user.toObject() });
 });

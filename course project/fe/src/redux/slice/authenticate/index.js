@@ -4,7 +4,8 @@ import { createSlice } from "@reduxjs/toolkit";
 const name = "authentication"
 const initialState = {
     accessToken: null,
-    isAuthenticated: false
+    isAuthenticated: false,
+    currentUser: null
 }
 
 const reducers = {
@@ -13,12 +14,14 @@ const reducers = {
         // doesn't actually mutate the state because it uses the Immer library,
         // which detects changes to a "draft state" and produces a brand new
         // immutable state based off those changes
-        authenticationStateData.accessToken = action.payload
+        authenticationStateData.accessToken = action.accessToken
+        authenticationStateData.currentUser = action.currentUser
         authenticationStateData.isAuthenticated = true
     },
     failAuthenticated: (authenticationStateData) => {
         authenticationStateData.accessToken = null
         authenticationStateData.isAuthenticated = false
+        authenticationStateData.currentUser = null
     }
 }
 

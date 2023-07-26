@@ -189,4 +189,14 @@ router.get(
   unblockUser_admin
 );
 
+// @desc get current login user by jwt
+// @access Admin User
+router.get("/me",
+  requireSignIn,
+  alowedTo("admin", "user"),
+  (req, res, _) => {
+    res.status(200).json(req.user)
+  });
+
+
 module.exports = router;

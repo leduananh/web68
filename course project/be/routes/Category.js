@@ -37,7 +37,10 @@ router.put(
 );
 
 // @desc get all Categories
-router.get("/", allCategories);
+router.get("/",
+requireSignIn,
+alowedTo("admin","user"),
+allCategories);
 
 // @desc get a single Category
 router.get("/:id", getCategoryValidator, getCategory);

@@ -19,7 +19,7 @@ exports.requireSignIn = asyncHandler(async (req, res, next) => {
     return next(
       new apiError(
         "You are not login, Please login to get access this route",
-        401
+        403
       )
     );
   }
@@ -30,8 +30,11 @@ exports.requireSignIn = asyncHandler(async (req, res, next) => {
     process.env.JWT_SECRET,
     function (err, decoded) {
       if (err) {
+        if (err.name === "TokenExpiredError") {
+          return next(new apiError(err.message, 401));
+        }
         if (err.name === "JsonWebTokenError") {
-          next(new apiError(err.message));
+          return next(new apiError(err.message, 500));
         }
       } else {
         return decoded;
@@ -46,7 +49,7 @@ exports.requireSignIn = asyncHandler(async (req, res, next) => {
       return next(
         new apiError(
           "The user that belong to this token does no longer exist",
-          401
+          403
         )
       );
     }
@@ -61,20 +64,20 @@ exports.requireSignIn = asyncHandler(async (req, res, next) => {
 // @Desc
 exports.alowedTo =
   (...roles) =>
-  (req, res, next) => {
-    // 1) access roles
-    // 2) access registered user (req.user.role)
+    (req, res, next) => {
+      // 1) access roles
+      // 2) access registered user (req.user.role)
 
-    if (!roles.includes(req.user.role)) {
-      return next(
-        new apiError("You are not allowed to access this route", 403)
-      );
-    }
-    next();
-  };
+      if (!roles.includes(req.user.role)) {
+        return next(
+          new apiError("You are not allowed to access this route", 403)
+        );
+      }
+      next();
+    };
 
 // @desc Make sure the user is logged in the same own url
-exports.isAuth = (req, res, next) => {};
+exports.isAuth = (req, res, next) => { };
 
 // @desc isBlocked
 exports.isBlocked = (req, res, next) => {

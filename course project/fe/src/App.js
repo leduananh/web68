@@ -4,6 +4,7 @@ import Layout from './layout';
 import HomePage from './pages/Home';
 import AboutPage from './pages/About';
 import LoginPage from './pages/Login';
+import Logout from './pages/Logout';
 
 function App() {
 
@@ -14,6 +15,7 @@ function App() {
         <Route index element={<HomePage />} />
         <Route path="about" element={<AboutPage />} />
         <Route path="login" element={<LoginPage />} />
+        <Route path="logout" element={<Logout />} />
       </Route>
     </Routes>
   );

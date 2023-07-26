@@ -7,13 +7,13 @@ authenticateApi.register = async () => {
 }
 
 authenticateApi.login = async (credential) => {
-    const {data} = await axiosInstance.post("/auth/login", credential)
+    const { data } = await axiosInstance.post("/auth/login", credential)
     return data
 }
 
-authenticateApi.logout = async () => {
-    // axiosInstance.get("http://localhost:4000/api/auth/register")
+authenticateApi.isTokenValid = async (accessToken) => {
+    const { data } = await axiosInstance.post("/auth/isTokenValid", {accessToken})
+    return data
 }
-
 
 export default authenticateApi
